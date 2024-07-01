@@ -1,0 +1,20 @@
+version: '3.12'
+
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    container_name: postgres_students_alchemy
+    env_file:
+      .env
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "${DB_PORT}:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
